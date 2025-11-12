@@ -2,45 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @layer base {
   :root {
     --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-geist: 'Geist', system-ui, sans-serif;
-    --font-geist-mono: 'Geist Mono', monospace;
-    --font-mona: 'Mona Sans', system-ui, sans-serif;
-    --font-ibm-plex: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-manrope: 'Manrope', system-ui, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+    /* Proper Trim Palette */
+    --pt-ivory: #F7F7F5;
+    --pt-parchment: #EDEDE8;
+    --pt-shell: #E5E2DC;
+    --pt-sage: #E6E8D9;
+    --pt-slate: #ACB9C1;
+    --pt-espresso: #402F2A;
+    --pt-gold: #4D411D;
   }
 
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    color: #222;
+    background: var(--pt-ivory);
   }
 
   body {
     @apply antialiased;
   }
+
+  .font-serif {
+    font-family: var(--font-serif);
+  }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
-@layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm transition-all duration-300 ease-out;
   }
+  .btn-primary {
+    background: var(--pt-gold);
+    color: white;
+  }
+  .btn-primary:hover { @apply opacity-95 shadow-lg; }
 
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
-  }
+  .btn-ghost { @apply border border-[color:var(--pt-shell)] bg-white/60 backdrop-blur text-gray-900; }
+  .btn-ghost:hover { @apply border-gray-400; }
+}
+
+/* Motion helpers */
+@layer utilities {
+  .elevate { box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
 }
